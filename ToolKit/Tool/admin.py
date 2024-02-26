@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import website_Tools
+from .models import website_Tools, Category
 
 class Display_listOfTools(admin.ModelAdmin):
     """ Display the list of tools in the admin panel. """
@@ -8,3 +8,4 @@ class Display_listOfTools(admin.ModelAdmin):
     
 
 admin.site.register(website_Tools, Display_listOfTools)
+admin.site.register(Category)
