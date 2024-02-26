@@ -6,17 +6,21 @@ class PricingChoices(models.TextChoices):
     PAID = 'PAID', 'Paid'
     FREEMIUM = 'FREEMIUM', 'Freemium'
     
-class Category(models.TextChoices):
-    SEO = 'SEO', 'SEO'
-    MARKETING = 'MARKETING', 'Marketing'
-    ARTIFICIAL_INTELLIGENCE = 'ARTIFICIAL INTELLIGENCE', 'Artificial Intelligence' 
-    DEVELOPMENT = 'DEVELOPMENT', 'Development'
-    DESIGN = 'DESIGN', 'Design'
-    SECURITY = 'SECURITY', 'Security'
-    ANALYTICS = 'ANALYTICS', 'Analytics'
-    SOCIAL_MEDIA = 'SOCIAL_MEDIA', 'Social Media'
-    ECOMMERCE = 'ECOMMERCE', 'E-commerce'
-    OTHERS = 'OTHERS', 'Others'
+class Category(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    def __str__(self) -> str:
+        return self.name
+
+    # SEO = 'SEO', 'SEO'
+    # MARKETING = 'MARKETING', 'Marketing'
+    # ARTIFICIAL_INTELLIGENCE = 'ARTIFICIAL INTELLIGENCE', 'Artificial Intelligence' 
+    # DEVELOPMENT = 'DEVELOPMENT', 'Development'
+    # DESIGN = 'DESIGN', 'Design'
+    # SECURITY = 'SECURITY', 'Security'
+    # ANALYTICS = 'ANALYTICS', 'Analytics'
+    # SOCIAL_MEDIA = 'SOCIAL_MEDIA', 'Social Media'
+    # ECOMMERCE = 'ECOMMERCE', 'E-commerce'
+    # OTHERS = 'OTHERS', 'Others'
     
 
 # Create your models here.
@@ -28,7 +32,8 @@ class website_Tools(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     pricing = models.CharField(max_length=8, choices=PricingChoices.choices, default=PricingChoices.FREE)
-    category = models.CharField(max_length=23, choices=Category.choices, default=Category.OTHERS)
+    # category = models.CharField(max_length=23, choices=Category.choices, default=Category.OTHERS)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     # image = models.ImageField(upload_to='images/')
     url = models.URLField()
     
