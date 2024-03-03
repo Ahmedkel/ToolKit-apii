@@ -104,6 +104,7 @@ class website_ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = website_Tools.objects.all()
     serializer_class = website_ToolsSerializer
     permission_classes = [IsAdminUser]
+    lookup_field = 'id'
 
     def get_object(self):
         # Override the get_object method to handle the case where the category needs to be fetched or created
