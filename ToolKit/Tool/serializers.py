@@ -13,13 +13,17 @@ class website_ToolsSerializer(serializers.ModelSerializer):
         
     def create(self, validated_data):
         """ Create a new website_tool object with the validated data."""
-        # Extract the category name from the validated data
         category_name = validated_data.pop('category')['name']
-        # Get or create the category object
         category, created = Category.objects.get_or_create(name=category_name)
-        # Create the website_Tools object
         website_tool = website_Tools.objects.create(category=category, **validated_data)
         return website_tool
+    
+    def validate_category(self, value):
+        """ Custom validation for the category field. """
+        # Example: Check if the category name is valid
+        if not Category.objects.filter(name=value).exists():
+            raise serializers.ValidationError("Invalid category name.")
+        return value
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta(object):
