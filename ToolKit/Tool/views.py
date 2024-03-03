@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.http import JsonResponse
-from .models import website_Tools
+from .models import website_Tools,Category
 from .serializers import website_ToolsSerializer, UserSerializer
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
@@ -27,6 +27,16 @@ def website_ToolsList(request, format=None):
         return Response(serializer.data)
 
     if request.method == 'POST':
+        # Check if the category exists, if not create it
+        category_name = request.data.get('category_name')
+        category, created = Category.objects.get_or_create(name=category_name)
+
+        # Update the request data with the category instance
+        mutable = request.POST._mutable
+        request.POST._mutable = True
+        request.data['category'] = category.id
+        request.POST._mutable = mutable
+        
         serializer = website_ToolsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
