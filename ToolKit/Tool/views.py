@@ -3,13 +3,7 @@ from .serializers import website_ToolsSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
-from rest_framework.permissions import IsAdminUser
-
-
-
 from rest_framework import generics
-from .models import website_Tools, Category
-from .serializers import website_ToolsSerializer
 from rest_framework.permissions import IsAdminUser
 
 
