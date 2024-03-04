@@ -20,7 +20,6 @@ class website_ToolsSerializer(serializers.ModelSerializer):
     
     def validate_category(self, value):
         """ Custom validation for the category field. """
-        # Example: Check if the category name is valid
         if not Category.objects.filter(name=value).exists():
             raise serializers.ValidationError("Invalid category name.")
         return value
