@@ -13,7 +13,7 @@ class website_ToolsSerializer(serializers.ModelSerializer):
         
     def create(self, validated_data):
         """ Create a new website_tool object with the validated data."""
-        category_name = validated_data.pop('category')['name']
+        category_name = validated_data.pop('category').name
         category, created = Category.objects.get_or_create(name=category_name)
         website_tool = website_Tools.objects.create(category=category, **validated_data)
         return website_tool
