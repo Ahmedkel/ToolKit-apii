@@ -46,3 +46,12 @@ class website_ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
         if not created:
             instance.save() # Save instance if category already exists but was not originally in the request data
         return instance
+
+# New view for filtering tools by category
+class ToolsByCategoryList(generics.ListAPIView):
+    serializer_class = website_ToolsSerializer
+
+    def get_queryset(self):
+        """ This method is used to filter the website tools by category. """
+        category_name = self.kwargs['category_name']
+        return website_Tools.objects.filter(category__name=category_name)
