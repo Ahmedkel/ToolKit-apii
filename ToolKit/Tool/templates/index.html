@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Website Tools</title>
+  <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'Tool/css/style.css' %}">
+  {% comment %} <script src="{% static 'js/website_tools.js' %}"></script> {% endcomment %}
+</head>
+{% block content %}
+ <h1>Website Tools</h1>
+ <ul>
+    {% for tool in tools %}
+      <li>{{ tool.name }} </br> <a href="{{ tool.url }}"> {{ tool.url }} </a></li>
+    {% endfor %}
+ </ul>
+{% endblock %}
