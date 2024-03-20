@@ -2,13 +2,37 @@
 body {
     font-family: 'Coolvetica', sans-serif;
     font-size: large;
-   }
-   
-   h1 {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
     color: #333;
-   }
-   
-   ul {
-    list-style-type: none;
-   }
-   
+    text-align: center;
+    padding: 20px 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.grid-item a {
+    color: #007bff;
+    text-decoration: none;
+}
