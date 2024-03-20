@@ -11,7 +11,7 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.name
 
-class website_Tools(models.Model):
+class Website_Tools(models.Model):
     """ This class is used to create the website_Tools model. """
     id = models.AutoField(primary_key=True, unique=True, editable=False)
     name = models.CharField(max_length=100, unique=True)

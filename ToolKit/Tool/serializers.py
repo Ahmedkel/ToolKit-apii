@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import website_Tools, Category
+from .models import Website_Tools, Category
 from django.contrib.auth.models import User
 
 
-class website_ToolsSerializer(serializers.ModelSerializer):
+class Website_ToolsSerializer(serializers.ModelSerializer):
     """ This class is used to serialize the website_Tools model. """
     category = serializers.SlugRelatedField(
         queryset=Category.objects.all(),
@@ -17,7 +17,7 @@ class website_ToolsSerializer(serializers.ModelSerializer):
 #     category_name = serializers.CharField(source='category.name')
 
     class Meta:
-        model = website_Tools
+        model = Website_Tools
         fields = ['id', 'name', 'category', 'description', 'created_at', 'updated_at', 'pricing', 'url']
     
     # class Meta:

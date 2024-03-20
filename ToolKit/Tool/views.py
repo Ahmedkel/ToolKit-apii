@@ -1,20 +1,21 @@
-from .models import website_Tools,Category
-from .serializers import website_ToolsSerializer
+from .models import Website_Tools,Category
+from .serializers import Website_ToolsSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
 
-class website_ToolsList(generics.ListCreateAPIView):
+class Website_ToolsList(generics.ListCreateAPIView):
     """
     This class is used to list
     all the website tools and also
     to add a new website tool.
     """
-    queryset = website_Tools.objects.all()
-    serializer_class = website_ToolsSerializer
+    queryset = Website_Tools.objects.all()
+    serializer_class = Website_ToolsSerializer
     permission_classes = [IsAdminUser]
 
     def perform_create(self, serializer):
@@ -27,14 +28,14 @@ class website_ToolsList(generics.ListCreateAPIView):
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class website_ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
+class Website_ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     This class is used to retrieve,
     update and delete a single
     website tool by its id.
     """
-    queryset = website_Tools.objects.all()
-    serializer_class = website_ToolsSerializer
+    queryset = Website_Tools.objects.all()
+    serializer_class = Website_ToolsSerializer
     permission_classes = [IsAdminUser]
     lookup_field = 'id'
 
@@ -49,9 +50,14 @@ class website_ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
 
 # New view for filtering tools by category
 class ToolsByCategoryList(generics.ListAPIView):
-    serializer_class = website_ToolsSerializer
+    serializer_class = Website_ToolsSerializer
 
     def get_queryset(self):
         """ This method is used to filter the website tools by category. """
         category_name = self.kwargs['category_name']
-        return website_Tools.objects.filter(category__name=category_name)
+        return Website_Tools.objects.filter(category__name=category_name)
+
+def home(request):
+    """ This function is used to render the home page. """
+    tools = Website_Tools.objects.all()
+    return render(request, 'index.html', {'tools': tools})
