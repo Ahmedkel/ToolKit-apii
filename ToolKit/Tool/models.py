@@ -1,4 +1,5 @@
 from django.db import models
+from django_resized import ResizedImageField
 
 
 class PricingChoices(models.TextChoices):
@@ -20,7 +21,7 @@ class Website_Tools(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     pricing = models.CharField(max_length=8, choices=PricingChoices.choices, default=PricingChoices.FREE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    # image = models.ImageField(upload_to='images/')
+    image = ResizedImageField(size=[500, 300], quality=80, upload_to='tool_images', force_format='WEBP' , default='tool_images/default.jpg')
     url = models.URLField(unique=True)
     
     def __str__(self):
