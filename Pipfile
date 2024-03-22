@@ -7,6 +7,8 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 autoflake = "*"
+django-resized = "*"
+pillow = "*"
 
 [dev-packages]
 
