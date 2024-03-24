@@ -1,38 +1,188 @@
 /* styles.css */
-body {
+:root {
+    --surface-color: #fff;
+    --curve: 25;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
     font-family: 'Coolvetica', sans-serif;
-    font-size: large;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-h1 {
-    color: #333;
-    text-align: center;
-    padding: 20px 0;
-}
-
-.grid-container {
+    background-color: #fef8f8;
+  }
+  
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 20px;
-    padding: 20px;
-}
-
-.grid-item {
-    background-color: #fff;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 4rem 5vw;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .card {
+    position: relative;
+    display: block;
+    height: 100%;  
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.grid-item h2 {
-    margin: 0 0 10px 0;
-    color: #333;
-}
-
-.grid-item a {
-    color: #007bff;
+    border-radius: calc(var(--curve) * 1px);
+    overflow: hidden;
     text-decoration: none;
-}
+  }
+  
+  .card__image {      
+    width: -webkit-fill-available;
+    object-fit: cover;
+    background-size: cover;
+    margin-bottom: -4px;
+  }
+
+  .card__space {
+    width: 100%;
+    height: 100px;
+    background-color: var(--surface-color);
+  }
+  
+  .card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;      
+    border-radius: calc(var(--curve) * 1px);
+    background-color: var(--surface-color);      
+    transform: translateY(100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card:hover .card__overlay {
+    transform: translateY(0);
+    border-radius: calc(var(--curve) * 1px) 0 0 0;    
+  }
+  
+  .card__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 2em;
+    border-radius: calc(var(--curve) * 1px) 0 0 0;    
+    background-color: var(--surface-color);
+    transform: translateY(-100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card:hover .card__header {
+    transform: translateY(0);
+  }
+  
+  .card__thumb {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;      
+    border-radius: 50%;      
+  }
+  
+  .card__title {
+    font-size: 1em;
+    margin: 0 0 .3em;
+    color: #6A515E;
+  }
+  
+  .card__tagline {
+    display: block;
+    margin: 1em 0;
+    font-family: 'Product Sans';  
+    font-size: .8em; 
+    color: #D7BDCA;  
+  }
+  
+  .card__status {
+    font-size: .9em;
+    color: #D7BDCA;
+  }
+  
+  .card__description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px;
+    padding: 0 2em 2em;
+    margin: 0;
+    color: #D7BDCA;
+    font-family: 'Product Sans';   
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-line-clamp: 3;
+    
+    display: box;
+    box-orient: vertical;
+    line-clamp: 3;
+
+    max-height: 80px;
+  }
+
+  .skeleton {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  
+  .skeleton-line {
+    height: 16px;
+    background-color: #e0e0e0;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  
+  .skeleton-line:last-child {
+    margin-bottom: 0;
+    width: 60%;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-color: #e0e0e0;
+    }
+    100% {
+      background-color: #f0f0f0;
+    }
+  }
+
+  /* .skeleton-card {
+    list-style-type: none;
+   }
+   
+   .skeleton-image {
+    width: 100%;
+    height: 350px;
+    background-color: hsl(200, 20%, 80%);
+    border-radius: 10px;
+    animation: skeleton-loading 1s linear infinite alternate;
+   }
+   
+   @keyframes skeleton-loading {
+     0% {
+       background-color: hsl(200, 20%, 80%);
+    }
+     100% {
+       background-color: hsl(200, 20%, 95%);
+    }
+   }
+   
+   .skeleton-text {
+    width: 100%;
+    height: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: hsl(200, 20%, 80%);
+    animation: skeleton-loading 1s linear infinite alternate;
+   } */
+   
