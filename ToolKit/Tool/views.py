@@ -3,6 +3,7 @@ from .serializers import Website_ToolsSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render
+from django.db.models import Q
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -57,7 +58,20 @@ class ToolsByCategoryList(generics.ListAPIView):
         category_name = self.kwargs['category_name']
         return Website_Tools.objects.filter(category__name=category_name)
 
+# def home(request):
+#     """ This function is used to render the home page. """
+#     tools = Website_Tools.objects.all()
+#     return render(request, 'index.html', {'tools': tools})
+
 def home(request):
-    """ This function is used to render the home page. """
-    tools = Website_Tools.objects.all()
-    return render(request, 'index.html', {'tools': tools})
+    """ This function is used to handle search queries. """
+    query = request.GET.get('q', '')
+    if query:
+        tools = Website_Tools.objects.filter(
+            Q(name__icontains=query) |
+            Q(category__name__icontains=query) |
+            Q(description__icontains=query)
+        )
+    else:
+        tools = Website_Tools.objects.all()
+    return render(request, 'index.html', {'tools': tools, query: query})
