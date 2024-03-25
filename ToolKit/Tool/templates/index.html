@@ -1,42 +1,89 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
- <title>Website Tools</title>
- <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet">
- <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
- <link rel="stylesheet" type="text/css" href="{% static 'Tool/css/style.css' %}">
-</head>
-<body>
- <h1>Website Tools</h1>
-{% block content %}
-<ul class="cards">
-{% for tool in tools %}
- <li>
-    <a href="{{ tool.url }}" class="card" aria-label="{{ tool.name }}" target="blank">
-      <img src="{{ tool.image.url }}" class="card__image" alt="{{ tool.name }}" />
-      <div class="card__space"></div>
-      <div class="card__overlay">
-        <div class="card__header">
-          <img class="card__thumb" src="https://avatars.githubusercontent.com/u/85514668?v=4" alt="" />
-          <div class="card__header-text">
-            <h3 class="card__title">{{ tool.name }}</h3>
-            <span class="card__tagline">{{ tool.category }}</span>            
-            <span class="card__status">{{ tool.created_at|timesince }}</span>
+  <head>
+    <title>Website Tools</title>
+    <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'Tool/css/style.css' %}"
+    />
+  </head>
+
+  <body>
+    <div class="header-container">
+      <h1><a href="/">Website Tools</a></h1>
+      <form method="get" action="">
+        <input type="text" name="q" placeholder="Search tools..." />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    {% if not tools %}
+    <p>No tools found.</p>
+    {% else %} {% block content %}
+    <ul class="cards">
+      {% for tool in tools %}
+      <li>
+        <a
+          href="{{ tool.url }}"
+          class="card__url"
+          aria-label="{{ tool.name }}"
+          target="blank"
+        >
+          <img
+            src="{{ tool.image.url }}"
+            class="card__image"
+            alt="{{ tool.name }}"
+          />
+          <div class="card__space"></div>
+          <div class="card__overlay">
+            <div class="card__header">
+              <img
+                class="card__thumb"
+                src="https://avatars.githubusercontent.com/u/85514668?v=4"
+                alt=""
+              />
+              <div class="card__header-text">
+                <h3 class="card__title">{{ tool.name }}</h3>
+                <span class="card__tagline">{{ tool.category }}</span>
+                <span class="card__status"
+                  >{{ tool.created_at|timesince }}</span
+                >
+              </div>
+            </div>
+            <p class="card__description">{{ tool.description }}</p>
           </div>
-        </div>
-        <p class="card__description">{{ tool.description }}</p>
-      </div>
-    </a>
- </li>    
-{% endfor %}
-</ul>
-<div class="skeleton">
-  <div class="skeleton-line"></div>
-  <div class="skeleton-line"></div>
-  <div class="skeleton-line"></div>
-  <div class="skeleton-line"></div>
-</div>
-{% endblock %}
-</body>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="skeleton">
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line"></div>
+    </div>
+    {% endblock %} {% endif %}
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var cards = document.querySelectorAll(".card");
+      var timeout;
+
+      cards.forEach(function (card) {
+        card.addEventListener("mouseenter", function () {
+          timeout = setTimeout(function () {
+            card.classList.add("hovered");
+          }, 1000); // Delay in milliseconds
+        });
+
+        card.addEventListener("mouseleave", function () {
+          clearTimeout(timeout);
+          card.classList.remove("hovered");
+        });
+      });
+    });
+  </script>
 </html>
