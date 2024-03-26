@@ -4,6 +4,7 @@
   <head>
     <title>Website Tools</title>
     <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet" />
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -11,7 +12,6 @@
       href="{% static 'Tool/css/style.css' %}"
     />
   </head>
-
   <body>
     <div class="header-container">
       <h1><a href="/">Website Tools</a></h1>
@@ -58,16 +58,57 @@
         </a>
       </li>
       {% endfor %}
+      <li id="li__skeleton-loader">
+        <a
+          href=""
+          class="card__url"
+          aria-label=""
+        >
+          <div class="card__image__skeleton skeleton"></div>
+          <div class="card__space"></div>
+          <div class="card__overlay">
+            <div class="card__header">
+              <div class="card__thumb skeleton"></div>
+              <div class="card__header-text">
+                <h3 class="card__title">
+                  <div class="skeleton skeleton-line"></div>
+                </h3>
+                <span class="card__tagline__skeleton">
+                  <div class="skeleton skeleton-line"></div>
+                </span>
+                <span class="card__status">
+                  <div class="skeleton skeleton-line"></div>
+                </span>
+              </div>
+            </div>
+            <div class="card__description">
+              <div class="skeleton skeleton-line"></div>
+              <div class="skeleton skeleton-line"></div>
+              <div class="skeleton skeleton-line"></div>
+            </div>
+          </div>
+        </a>
+      </li>
     </ul>
-    <div class="skeleton">
-      <div class="skeleton-line"></div>
-      <div class="skeleton-line"></div>
-      <div class="skeleton-line"></div>
-      <div class="skeleton-line"></div>
-    </div>
     {% endblock %} {% endif %}
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
+    $(document).ready(function() {
+    let isLoading = false;
+    let page = 1; // Start with page 1
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+          if (!isLoading) {
+            isLoading = true;
+            page++;
+            $('#li__skeleton-loader').show();
+            loadMoreContent(page);
+          }
+        }
+    });
+
     document.addEventListener("DOMContentLoaded", function () {
       var cards = document.querySelectorAll(".card");
       var timeout;
