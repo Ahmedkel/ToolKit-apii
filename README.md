@@ -24,6 +24,10 @@ Welcome to Toolkit API, a web application designed for sharing various websites 
 2. Explore the various tools and websites shared by the community.
 3. Submit your own tools or websites to share with others.
 
+📝 **Preview:**
+![Project Preview](./img/preview.png)
+
+
 📝 **Contributing:**
 Contributions are welcome! If you have suggestions for new features, improvements, or bug fixes, please submit a pull request.
 
