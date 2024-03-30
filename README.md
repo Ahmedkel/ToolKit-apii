@@ -2,26 +2,25 @@
 
 Welcome to Toolkit API, a web application designed for sharing various websites that serve as usable tools, ranging from AI tools to uploading tools and more!
 
-🚀 **Features:**
+## 🚀 Features:
 - Share and discover a wide range of useful websites and tools.
 - Explore AI tools, uploading tools, and more.
 - Built-in search functionality to easily find what you're looking for.
 
-🔧 **Technologies Used:**
+## 🔧 Technologies Used:
 - Django
 - HTML
 - JavaScript
 - CSS
 
-🛠️ **Installation:**
-## Prerequisites
+## 🛠️ Installation:
+
+### Prerequisites
 
 Before you begin, ensure you have the following installed:
 - Python 3.6 or newer
 - Git
 - Pipenv
-
-## Installation
 
 ### Step 1: Clone the Repository
 
@@ -83,20 +82,20 @@ You can now access your API at `http://127.0.0.1:8000/`.
 - Ensure that the port `8000` is not already allocated by other apps.
 - To access the admin panel go to `http://127.0.0.1:8000/admin/`.
 
-🌐 **Usage:**
+## 🌐 Usage:
 1. Register for an admin account or log in if you already have one.
 2. Explore the various tools and websites shared by the community.
 3. Submit your own tools or websites to share with others.
 
-📝 **Preview:**
+## 📝 Preview:
 ![Project Preview](./img/preview.png)
 
 
-📝 **Contributing:**
+## 📝 Contributing:
 Contributions are welcome! If you have suggestions for new features, improvements, or bug fixes, please submit a pull request.
 
-📧 **Contact:**
+## 📧 Contact:
 For any inquiries or support, feel free to contact us at [ahmedkeloch@gmail.com](mailto:ahmedkeloch@gmail.com).
 
-📄 **License:**
+## 📄 License:
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for more details.
