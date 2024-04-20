@@ -40,14 +40,6 @@ class Website_ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAdminUser]
     lookup_field = 'id'
 
-    def get_object(self):
-        # Override the get_object method to handle the case where the category needs to be fetched or created
-        instance = super().get_object()
-        category_name = self.request.data.get('category_name', instance.category.name)
-        instance.category, created = Category.objects.get_or_create(name=category_name)
-        if not created:
-            instance.save() # Save instance if category already exists but was not originally in the request data
-        return instance
 
 # New view for filtering tools by category
 class ToolsByCategoryList(generics.ListAPIView):
@@ -58,10 +50,6 @@ class ToolsByCategoryList(generics.ListAPIView):
         category_name = self.kwargs['category_name']
         return Website_Tools.objects.filter(category__name=category_name)
 
-# def home(request):
-#     """ This function is used to render the home page. """
-#     tools = Website_Tools.objects.all()
-#     return render(request, 'index.html', {'tools': tools})
 
 def home(request):
     """ This function is used to handle search queries. """
