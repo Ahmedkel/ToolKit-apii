@@ -9,6 +9,11 @@ djangorestframework = "*"
 autoflake = "*"
 django-resized = "*"
 pillow = "*"
+pyyaml = "*"
+python-decouple = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
