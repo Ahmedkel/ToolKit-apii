@@ -18,11 +18,15 @@ class Website_ToolsList(generics.ListCreateAPIView):
     queryset = Website_Tools.objects.all()
     serializer_class = Website_ToolsSerializer
     permission_classes = [IsAdminUser]
-
+    
     def perform_create(self, serializer):
-        category_name = self.request.data.get('category_name')
-        category, created = Category.objects.get_or_create(name=category_name)
-        serializer.save(category=category)
+        """ This method is used to add a new website tool. """
+        category_id = self.request.data.get('category')
+        if category_id is not None:
+            category = Category.objects.get(id=category_id)
+            serializer.save(category=category)
+        else:
+            return Response({"error": "Category is required."}, status=400)
 
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -39,7 +43,6 @@ class Website_ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = Website_ToolsSerializer
     permission_classes = [IsAdminUser]
     lookup_field = 'id'
-
 
 # New view for filtering tools by category
 class ToolsByCategoryList(generics.ListAPIView):
@@ -61,5 +64,5 @@ def home(request):
             Q(description__icontains=query)
         )
     else:
-        tools = Website_Tools.objects.all()
+        tools = Website_Tools.objects.all().order_by('-created_at')
     return render(request, 'index.html', {'tools': tools, query: query})
