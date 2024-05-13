@@ -3,8 +3,13 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website Tools</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../static/Tool/css/favicon-32x32.png ">
+    <script type="module" src="../static/Tool/script.js"></script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../static/Tool/css/favicon-32x32.png "
+    />
     <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet" />
     <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet" />
     <link
@@ -17,13 +22,21 @@
     <div class="header-container">
       <h1><a href="/">Toolkit ;)</a></h1>
       <form method="get" action="">
-        <input type="text" name="q" placeholder="Search tools..." style="font-family: 'Coolvetica', sans-serif;"/>
-        <button type="submit" style="font-family: 'Coolvetica', sans-serif;">Search</button>
+        <input
+          type="text"
+          name="q"
+          placeholder="Search tools..."
+          style="font-family: 'Coolvetica', sans-serif"
+        />
+        <button type="submit" style="font-family: 'Coolvetica', sans-serif">
+          Search
+        </button>
       </form>
     </div>
     {% if not tools %}
     <p>No tools found.</p>
-    {% else %} {% block content %}
+    {% else %}
+    <div id="top"></div>
     <ul class="cards">
       {% for tool in tools %}
       <li>
@@ -60,11 +73,7 @@
       </li>
       {% endfor %}
       <li id="li__skeleton-loader">
-        <a
-          href=""
-          class="card__url"
-          aria-label=""
-        >
+        <a href="" class="card__url" aria-label="">
           <div class="card__image__skeleton skeleton"></div>
           <div class="card__space"></div>
           <div class="card__overlay">
@@ -91,41 +100,36 @@
         </a>
       </li>
     </ul>
-    {% endblock %} {% endif %}
+    {% endif %}
+    <footer class="footer">
+      <div class="container">
+        <div class="ftr_row">
+          <div class="col-md-12">
+            <p class="menu">
+              <a href="#">About</a>
+              <a href="https://github.com/Ahmedkel/" target="_blank">github</a>
+              <a href="#">Contact us</a>
+              <a href="#top">
+                <img width="16" height="16"
+                  src="{% static '../static/Tool/css/arrow-up.png' %}"
+                  alt="Back to top"
+                />
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <p class="copyright">
+              Copyright ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              2024 All rights reserved | This Website is made with ❤ by <span href="https://colorlib.com" class="ftr_name_tag" target="_blank">Ahmed KELLOUCH</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script>
-    $(document).ready(function() {
-    let isLoading = false;
-    let page = 1; // Start with page 1
-
-    $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-          if (!isLoading) {
-            isLoading = true;
-            page++;
-            $('#li__skeleton-loader').show();
-            loadMoreContent(page);
-          }
-        }
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-      var cards = document.querySelectorAll(".card");
-      var timeout;
-
-      cards.forEach(function (card) {
-        card.addEventListener("mouseenter", function () {
-          timeout = setTimeout(function () {
-            card.classList.add("hovered");
-          }, 1000); // Delay in milliseconds
-        });
-
-        card.addEventListener("mouseleave", function () {
-          clearTimeout(timeout);
-          card.classList.remove("hovered");
-        });
-      });
-    });
-  </script>
 </html>
