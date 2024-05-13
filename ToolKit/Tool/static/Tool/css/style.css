@@ -231,9 +231,42 @@
     height: 100%;
     min-height: 160px;
   }
-
+/*===========================================*/
+/* Responsivity */
+/*===========================================*/
   @media (max-width: 600px) {
     .cards {
       grid-template-columns: 100%;
     }
+  }
+/*===========================================*/
+/* Footer Styles */
+/*===========================================*/
+  .footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    bottom: 0;
+  }
+
+  .footer a {
+    text-decoration: none;
+    color: inherit;
+    margin: 0 2rem 0 2rem;
+  }
+
+  .footer p {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 1rem;
+  }
+
+  footer p {
+    font-size: 1rem;
+    background-color: var(--bg-color);
+    color: #6A515E;
   }
