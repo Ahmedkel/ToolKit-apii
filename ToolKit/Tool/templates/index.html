@@ -35,7 +35,7 @@
     </div>
     {% if not tools %}
     <p>No tools found.</p>
-    {% else %}
+    {% else %} {% block content %}
     <div id="top"></div>
     <ul class="cards">
       {% for tool in tools %}
@@ -100,6 +100,36 @@
         </a>
       </li>
     </ul>
-    {% endif %}
+    <footer class="footer">
+      <div class="container">
+        <div class="ftr_row">
+          <div class="col-md-12">
+            <p class="menu">
+              <a href="#">About</a>
+              <a href="https://github.com/Ahmedkel/" target="_blank">github</a>
+              <a href="#">Contact us</a>
+              <a href="#top">^
+                {% comment %} <img width="16" height="16"
+                  src='../static/Tool/css/arrow-up.png'
+                  alt="Back to top"
+                /> {% endcomment %}
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <p class="copyright">
+              Copyright ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              2024 All rights reserved | This Website is made with ❤ by <span href="https://github.com/Ahmedkel/" class="ftr_name_tag" target="_blank">Ahmed KELLOUCH</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    {% endblock %} {% endif %}
   </body>
 </html>
