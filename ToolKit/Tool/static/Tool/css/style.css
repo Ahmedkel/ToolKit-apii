@@ -1,11 +1,24 @@
 /*===========================================*/
 /* Root and Global Styles */
 /*===========================================*/
+
   :root {
-    --surface-color: #fff;
     --curve: 25;
+    --surface-color: #fff;
     --bg-color: #fef8f8;
+    --title-color: #121313;
+    --search-color: #e6e7e7;
     --sub-text-color: #D7BDCA;
+    --footer-text-color: #6A515E;
+  }
+
+  .darkmode {
+    --surface-color: #322f3e;
+    --bg-color: #1c1a27;
+    --title-color: #e6e7e7;
+    --search-color: #373636;
+    --sub-text-color: #a8a9a9;
+    --footer-text-color: #ba86fd;
   }
 
   * {
@@ -43,7 +56,7 @@
 
   .header-container a {
     text-decoration: none;
-    color: inherit;
+    color: var(--title-color);
   }
 
   .header-container form {
@@ -52,8 +65,9 @@
   }
 
   .header-container input[type="text"] {
+    background-color: var(--search-color);
     padding: 0.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--title-color);
     border-radius: calc(var(--curve) * 1px);
     margin-right: 0.5rem;
   }
@@ -70,6 +84,26 @@
   .header-container button:hover {
     background-color: #8d6e7d;
   }   
+/*===========================================*/
+/* theme toggle */
+/*===========================================*/
+  .dark-mode-toggle {
+    z-index: 100;
+    top: 1em;
+    right: 1em;
+    color: var(--foreground);
+    border: 2px solid currentColor;
+    padding: 4px;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .darkmode .dark-mode-toggle {
+    color: #fff;
+  }
 /*===========================================*/
 /* Cards Styles */
 /*===========================================*/
@@ -153,8 +187,9 @@
   
   .card__title {
     font-size: 1em;
+    letter-spacing: 0.09em;
     margin: 0 0 .3em;
-    color: #6A515E;
+    color: var(--title-color);
   }
   
   .card__tagline {
@@ -265,8 +300,13 @@
     margin: 1rem;
   }
 
+  footer span {
+    margin-left: 0.3rem;
+    color: var(--title-color);
+  }
+
   footer p {
     font-size: 1rem;
     background-color: var(--bg-color);
-    color: #6A515E;
+    color: var(--footer-text-color);
   }
