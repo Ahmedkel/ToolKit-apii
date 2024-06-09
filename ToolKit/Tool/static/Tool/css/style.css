@@ -1,7 +1,6 @@
 /*===========================================*/
 /* Root and Global Styles */
 /*===========================================*/
-
   :root {
     --curve: 25;
     --surface-color: #fff;
@@ -44,7 +43,7 @@
     background-color: var(--bg-color);
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 10;
   }
 
   .header-container h1 {
@@ -58,32 +57,78 @@
     text-decoration: none;
     color: var(--title-color);
   }
-
-  .header-container form {
-    display: flex;
-    align-items: center;
+/*===========================================*/
+/* Search Styles */
+/*===========================================*/
+  .search-container {
+    top: 0;
+    z-index: 5;
+    position: sticky;
   }
 
-  .header-container input[type="text"] {
+  .search-container a {
+    text-decoration: none;
+    color: var(--title-color);
+  }
+
+  .search-container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2.5rem 4vw;
+  }
+
+  .search-container input[type="text"] {
     background-color: var(--search-color);
-    padding: 0.5rem;
+    padding: 0.7rem 1rem;
     border: 1px solid var(--title-color);
     border-radius: calc(var(--curve) * 1px);
     margin-right: 0.5rem;
+    width: 50%;
   }
 
-  .header-container button {
-    padding: 0.5rem 1rem;
+  .search-container button {
+    padding: 0.7rem 1rem;
     border: none;
     background-color: #6A515E;
     color: white;
+    font-family: 'Product Sans'!important;
+    font-weight: 600;
     border-radius: calc(var(--curve) * 1px);
     cursor: pointer;
   }
 
-  .header-container button:hover {
+  .search-container button:hover {
     background-color: #8d6e7d;
-  }   
+  }
+/*===========================================*/
+/* Filter Styles */
+/*===========================================*/
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .select-field {
+    padding: 0.5rem 0.6rem;
+    color: var(--title-color);
+    background-color: var(--search-color);
+    border: 1px solid var(--title-color);
+    border-radius: calc(var(--curve) * 1px);
+    font-family: 'Product Sans';
+    font-size: .8em;
+    font-weight: 500;
+    margin-right: 0.5rem;
+  }
+  
+  option {
+    padding: 0.4rem;
+    border: 1px solid var(--title-color);
+    border-radius: calc(var(--curve) * 1px);
+    margin-right: 0.5rem;
+  }
 /*===========================================*/
 /* theme toggle */
 /*===========================================*/

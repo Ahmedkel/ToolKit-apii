@@ -55,14 +55,28 @@ class ToolsByCategoryList(generics.ListAPIView):
 
 
 def home(request):
-    """ This function is used to handle search queries. """
+    """ This function is used to handle search queries and sorting. """
     query = request.GET.get('q', '')
+    sort = request.GET.get('sort', '')
+    tools = Website_Tools.objects.all()
+
     if query:
         tools = Website_Tools.objects.filter(
             Q(name__icontains=query) |
             Q(category__name__icontains=query) |
             Q(description__icontains=query)
         )
+
+    if sort:
+        if sort == 'drpbox-sort-asc':
+            tools = tools.order_by('name')  # Ascending order by name
+        elif sort == 'drpbox-sort-desc':
+            tools = tools.order_by('-name')  # Descending order by name
+        elif sort == 'drpbox-sort-date-asc':
+            tools = tools.order_by('created_at')  # Ascending order by date added
+        elif sort == 'drpbox-sort-date-desc':
+            tools = tools.order_by('-created_at')  # Descending order by date added
     else:
-        tools = Website_Tools.objects.all().order_by('-created_at')
-    return render(request, 'index.html', {'tools': tools, query: query})
+        tools = tools.order_by('-created_at')  # Default sorting
+
+    return render(request, 'index.html', {'tools': tools, 'query': query})

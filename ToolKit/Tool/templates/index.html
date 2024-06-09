@@ -24,6 +24,11 @@
         <span id="dark-mode-toggle" class="dark-mode-toggle">
           <svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/></svg>
         </span>
+    </div>
+    {% if not tools %}
+    <p>No tools found.</p>
+    {% else %} {% block content %}
+    <div class="search-container" id="top">
       <form method="get" action="">
         <input
           type="text"
@@ -36,10 +41,18 @@
         </button>
       </form>
     </div>
-    {% if not tools %}
-    <p>No tools found.</p>
-    {% else %} {% block content %}
-    <div id="top"></div>
+    <div class="filter-container">
+      <div class="filter-block">
+          <form id="filter-form" method="get" action="" class="filter-class">
+            <select id="field" name="sort" class="select-field" onchange="this.form.submit()">
+              <option value="drpbox-sort-asc">Sort By Name (A-Z)</option>
+              <option value="drpbox-sort-desc">Sort By Name (Z-A)</option>
+              <option value="drpbox-sort-date-asc">Date Added (Newest-Oldest)</option>
+              <option value="drpbox-sort-date-desc">Date Added (Oldest-Newest)</option>
+            </select>
+          </form>
+      </div>
+    </div>
     <ul class="cards">
       {% for tool in tools %}
       <li>
