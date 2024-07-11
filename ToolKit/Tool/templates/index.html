@@ -19,6 +19,7 @@
     />
   </head>
   <body>
+    <button id="back-to-top" title="Back to Top">↑</button>
     <div class="header-container">
       <h1><a href="/">Toolkit ;)</a></h1>
         <span id="dark-mode-toggle" class="dark-mode-toggle">
@@ -45,10 +46,10 @@
       <div class="filter-block">
           <form id="filter-form" method="get" action="" class="filter-class">
             <select id="field" name="sort" class="select-field" onchange="this.form.submit()">
-              <option value="drpbox-sort-asc">Sort By Name (A-Z)</option>
-              <option value="drpbox-sort-desc">Sort By Name (Z-A)</option>
-              <option value="drpbox-sort-date-asc">Date Added (Newest-Oldest)</option>
-              <option value="drpbox-sort-date-desc">Date Added (Oldest-Newest)</option>
+              <option value="drpbox-sort-asc" {% if request.GET.sort == 'drpbox-sort-asc' %}selected{% endif %}>Sort By Name (A-Z)</option>
+              <option value="drpbox-sort-desc" {% if request.GET.sort == 'drpbox-sort-desc' %}selected{% endif %}>Sort By Name (Z-A)</option>
+              <option value="drpbox-sort-date-asc" {% if request.GET.sort == 'drpbox-sort-date-asc' %}selected{% endif %}>Date Added (Newest-Oldest)</option>
+              <option value="drpbox-sort-date-desc" {% if request.GET.sort == 'drpbox-sort-date-desc' %}selected{% endif %}>Date Added (Oldest-Newest)</option>
             </select>
           </form>
       </div>

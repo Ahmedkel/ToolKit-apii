@@ -73,9 +73,9 @@ def home(request):
         elif sort == 'drpbox-sort-desc':
             tools = tools.order_by('-name')  # Descending order by name
         elif sort == 'drpbox-sort-date-asc':
-            tools = tools.order_by('created_at')  # Ascending order by date added
+            tools = tools.order_by('-created_at')  # Ascending order by date added
         elif sort == 'drpbox-sort-date-desc':
-            tools = tools.order_by('-created_at')  # Descending order by date added
+            tools = tools.order_by('created_at')  # Descending order by date added
     else:
         tools = tools.order_by('-created_at')  # Default sorting
 
