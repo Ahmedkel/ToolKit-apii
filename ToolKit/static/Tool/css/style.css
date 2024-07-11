@@ -7,7 +7,7 @@
     --bg-color: #fef8f8;
     --title-color: #121313;
     --search-color: #e6e7e7;
-    --sub-text-color: #D7BDCA;
+    --sub-text-color: #c2a7b4;
     --footer-text-color: #6A515E;
   }
 
@@ -58,6 +58,33 @@
     color: var(--title-color);
   }
 /*===========================================*/
+/* Button Styles */
+/*===========================================*/
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--search-color);
+    color: var(--title-color);
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 24px;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    transition: opacity 0.3s;
+  }
+
+  #back-to-top:hover {
+    background-color: var(--sub-text-color);
+  }
+/*===========================================*/
 /* Search Styles */
 /*===========================================*/
   .search-container {
@@ -81,6 +108,7 @@
   .search-container input[type="text"] {
     background-color: var(--search-color);
     padding: 0.7rem 1rem;
+    color: var(--title-color);
     border: 1px solid var(--title-color);
     border-radius: calc(var(--curve) * 1px);
     margin-right: 0.5rem;
